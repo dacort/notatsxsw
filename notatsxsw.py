@@ -34,7 +34,7 @@ class MainHandler(webapp.RequestHandler):
       logging.info("Filtering %s statuses." % len(statuses))
       for node in statuses:
         text = node.getElementsByTagName('text')[0]
-        if re.search("#?sxsw", text.firstChild.data, re.I) or re.search("(I'm at|I just became the mayor|I just ousted|I just unlocked).*http:\/\/4sq\.com\/\w+", text.firstChild.data) or re.search("I favorited a YouTube video.*http:\/\/youtu\.be\/\w+", text.firstChild.data):
+        if re.search("#?sxsw", text.firstChild.data, re.I) or re.search("(I'm at|I just became the mayor|I just ousted|I just unlocked).*http:\/\/(4sq\.com|gowal\.la\/[a-z])\/\w+", text.firstChild.data) or re.search("I favorited a YouTube video.*http:\/\/youtu\.be\/\w+", text.firstChild.data):
           logging.info("Removing: %s" % text.firstChild.data)
           node.parentNode.removeChild(node)
       xml = dom.toxml()
