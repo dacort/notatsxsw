@@ -22,8 +22,8 @@ class MainHandler(webapp.RequestHandler):
     result = urlfetch.fetch(url="%s?%s" % (url,form_data),
                             headers=headers)
     
-    if result.status_code is not 200:
-      logging.error("Twitter error: %s" % result.content)
+    if result.status_code != 200:
+      logging.error("Twitter error: %s\n%s" % (result.status_code, result.content))
     
     xml = result.content
     # This is all we're hijacking at the moment
